@@ -23,7 +23,7 @@ describe "Tabelas", :tables do
   it "deve exibir o filme velozes e furiosos" do
     diesel = find("table tbody tr", text: "Vin Diesel")
     movie = diesel.all("td")[2].text
-    expect(movie).to eql "Velozes e Furiosos"
+    expect(movie).to eql "Fast and Furious"
   end
 
   it "deve exibir o insta do Chris Evans" do
@@ -33,7 +33,7 @@ describe "Tabelas", :tables do
     expect(insta).to eql "@teamcevans"
   end
 
-  it "deve selecionar Chris Pratt para remocao" do
+  it "deve selecionar Chris Pratt para remocao", :pratt do
     pratt = find("table tbody tr", text: "Chris Pratt")
     pratt.find("a", text: "delete").click
 
@@ -41,7 +41,7 @@ describe "Tabelas", :tables do
     expect(alert).to eql "Chris Pratt foi selecionado para remoção!"
   end
 
-  it "deve selecionar Chris Pratt para edicao" do
+  it "deve selecionar Chris Pratt para edicao", :pratt do
     pratt = find("table tbody tr", text: "Chris Pratt")
     pratt.find("a", text: "edit").click
 

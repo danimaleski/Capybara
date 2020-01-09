@@ -16,7 +16,7 @@ RSpec.configure do |config|
   config.include Capybara::DSL
 
   config.before(:example) do
-    page.current_window.resize_to(1280, 800)
+    page.current_window.resize_to(1920, 1080) #120,800
   end
 
   config.after(:example) do |e|
@@ -24,12 +24,12 @@ RSpec.configure do |config|
     #description = descreve cada cenário gsbu = pra transformar em string o cenário
     #primeiro parenteses serve pra transformar os caracterres especiais em nada, segundo parenteses serve pra transformar os espaços em branco com underline
     #puts nome
-    page.save_screenshot("log/" + nome + ".png")
+    page.save_screenshot ("log/" + nome + ".png") if e.exception #tira print somente se tiver uma exceção
   end
 end
 
 Capybara.configure do |config|
-  config.default_driver = :selenium_chrome
+  config.default_driver = :selenium_chrome_headless
   config.default_max_wait_time = 15
   config.app_host = "https://training-wheels-protocol.herokuapp.com"
 end
